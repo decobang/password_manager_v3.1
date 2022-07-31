@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:password_manager_v3/pages/add_info_page.dart';
 import 'package:password_manager_v3/pages/home_page.dart';
@@ -7,7 +8,9 @@ import 'package:password_manager_v3/models/database_manager.dart';
 void main() async {
   // ensure widgets binding
   WidgetsFlutterBinding.ensureInitialized();
-  
+
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   // initialize hive database
   await Hive.initFlutter();
 

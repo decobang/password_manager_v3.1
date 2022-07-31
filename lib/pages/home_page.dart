@@ -1,7 +1,8 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
-import 'package:password_manager_v3/adaptive_layouts/mobile_layout/moblie_home_page.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:password_manager_v3/models/boxes.dart';
+import 'package:password_manager_v3/models/database_manager.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,24 +12,42 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var size;
-
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
-
-    if (size.width < 600) {
-      return MobileHomePage(context);
-    } else if (size.width > 600 && size.width < 1024) {
-      print("Tablet Size");
-      return Center(
-        child: Text("Tablet Size"),
-      );
-    } else {
-      print("Desktop Size");
-      return Center(
-        child: Text("Desktop Size"),
-      );
-    }
+    return Scaffold(
+      backgroundColor: Colors.blueGrey[700],
+      appBar: AppBar(
+        backgroundColor: Colors.deepOrange,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            //Navigator.pushReplacementNamed(context, '/');
+          },
+        ),
+        title: Text('Login'),
+      ),
+      body: ValueListenableBuilder<Box<SaveUserData>>(
+        valueListenable: Boxes.getUserData().listenable(),
+        builder: (context, box, widget) {
+          return ListView.builder(
+            itemCount: box.length,
+            itemBuilder: (context, index) {
+              final item = box.getAt(index);
+              return ListTile(
+                title: Text(item!.title),
+                subtitle: Text(item.username),
+                trailing: Text(item.password),
+              );
+            },
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepOrange,
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, '/add_info_page');
+        },
+        child: Icon(Icons.add),
+      ));
   }
 }
