@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:password_manager_v3/models/boxes.dart';
@@ -15,39 +14,39 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[700],
-      appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            //Navigator.pushReplacementNamed(context, '/');
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.blueGrey[700],
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              //Navigator.pushReplacementNamed(context, '/');
+            },
+          ),
+          title: Text('Login'),
+        ),
+        body: ValueListenableBuilder<Box<SaveUserData>>(
+          valueListenable: Boxes.getUserData().listenable(),
+          builder: (context, box, widget) {
+            return ListView.builder(
+              itemCount: box.length,
+              itemBuilder: (context, index) {
+                final item = box.getAt(index);
+                return ListTile(
+                  title: Text(item!.title),
+                  subtitle: Text(item.username),
+                  trailing: Text(item.password),
+                );
+              },
+            );
           },
         ),
-        title: Text('Login'),
-      ),
-      body: ValueListenableBuilder<Box<SaveUserData>>(
-        valueListenable: Boxes.getUserData().listenable(),
-        builder: (context, box, widget) {
-          return ListView.builder(
-            itemCount: box.length,
-            itemBuilder: (context, index) {
-              final item = box.getAt(index);
-              return ListTile(
-                title: Text(item!.title),
-                subtitle: Text(item.username),
-                trailing: Text(item.password),
-              );
-            },
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.deepOrange,
-        onPressed: () {
-          Navigator.pushReplacementNamed(context, '/add_info_page');
-        },
-        child: Icon(Icons.add),
-      ));
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.blueGrey[700],
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/add_info_page');
+          },
+          child: Icon(Icons.add),
+        ));
   }
 }

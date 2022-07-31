@@ -19,53 +19,55 @@ class _AddInfoPageState extends State<AddInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[700],
-      appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
-        title: Text('Home'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, '/');
-          },
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.lightBlue,
+          title: Text('Home'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, '/');
+            },
+          ),
         ),
-      ),
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          shrinkWrap: true,
-          padding: const EdgeInsets.all(16.0),
-          children: <Widget>[
-            CustomTextFormField(context, _saveUserData, "title", false),
-            CustomTextFormField(context, _saveUserData, 'username', false),
-            CustomTextFormField(context, _saveUserData, 'password', true),
-            CustomTextFormField(context, _saveUserData, 'email', false),
-            Row(
+        body: Form(
+          key: _formKey,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                Spacer(
+                  flex: 2,
+                ),
+                CustomTextFormField(context, _saveUserData, 'title', false),
+                SizedBox(
+                  height: 24,
+                ),
+                CustomTextFormField(context, _saveUserData, 'username', false),
+                SizedBox(
+                  height: 24,
+                ),
+                CustomTextFormField(context, _saveUserData, 'password', true),
+                SizedBox(
+                  height: 24,
+                ),
+                CustomTextFormField(context, _saveUserData, 'email', false),
                 Spacer(),
                 MaterialButton(
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      box.add(_saveUserData);
-                      //await _saveUserData.save();
-                      Navigator.pushReplacementNamed(context, '/');
-                    }
-                  },
-                  color: Colors.deepOrange,
+                  color: Colors.lightBlue,
+                  onPressed: () {},
                   child: Text(
                     'Save',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
-                Spacer(),
+                Spacer(
+                  flex: 2,
+                )
               ],
-            )
-          ],
-        ),
-      ),
-    );
+            ),
+          ),
+        ));
   }
 }

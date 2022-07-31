@@ -4,25 +4,18 @@ import 'package:password_manager_v3/models/database_manager.dart';
 Widget CustomTextFormField(BuildContext context, SaveUserData _saveUserData,
     String type, bool required) {
   return TextFormField(
-      style: TextStyle(
-          height: 1.5,
-          color: Colors.white,
-          fontStyle: FontStyle.italic,
-          letterSpacing: 1),
+      style: TextStyle(color: Colors.black, letterSpacing: 1),
       decoration: InputDecoration(
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
         ),
-        fillColor: Colors.white,
         labelText: type.toLowerCase().toString(),
         labelStyle: TextStyle(
-            color: Colors.deepOrange,
-            letterSpacing: 1,
-            fontStyle: FontStyle.italic,
-            fontWeight: FontWeight.bold),
+          color: Colors.lightBlue,
+        ),
       ),
       validator: (value) {
-        if (required && value == null) {
+        if (required && value!.isEmpty) {
           return 'required';
         } else {
           if (type == 'title') {
@@ -36,5 +29,6 @@ Widget CustomTextFormField(BuildContext context, SaveUserData _saveUserData,
             _saveUserData.email = value == null ? '' : value;
           }
         }
+        return null;
       });
 }
