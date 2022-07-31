@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:password_manager_v3/models/boxes.dart';
 import 'package:password_manager_v3/models/database_manager.dart';
+import 'package:password_manager_v3/widgets/widgets.dart';
 
 class AddInfoPage extends StatefulWidget {
   const AddInfoPage({Key? key}) : super(key: key);
@@ -35,99 +36,10 @@ class _AddInfoPageState extends State<AddInfoPage> {
           shrinkWrap: true,
           padding: const EdgeInsets.all(16.0),
           children: <Widget>[
-            TextFormField(
-              style: TextStyle(
-                  height: 1.5,
-                  color: Colors.white,
-                  fontStyle: FontStyle.italic,
-                  letterSpacing: 1),
-              decoration: InputDecoration(
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                fillColor: Colors.white,
-                labelText: 'title',
-                labelStyle: TextStyle(
-                    color: Colors.deepOrange,
-                    letterSpacing: 1,
-                    fontStyle: FontStyle.italic,
-                    fontWeight: FontWeight.bold),
-              ),
-              validator: (value) {
-                _saveUserData.title =
-                    value == null || value.isEmpty ? 'Title' : value;
-              },
-            ),
-            TextFormField(
-              style: TextStyle(
-                  height: 1.5,
-                  color: Colors.white,
-                  fontStyle: FontStyle.italic,
-                  letterSpacing: 1),
-              decoration: InputDecoration(
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                fillColor: Colors.white,
-                labelText: 'username',
-                labelStyle: TextStyle(
-                    color: Colors.deepOrange,
-                    letterSpacing: 1,
-                    fontStyle: FontStyle.italic,
-                    fontWeight: FontWeight.bold),
-              ),
-              validator: (value) {
-                _saveUserData.username = value == null ? ' ' : value;
-              },
-            ),
-            TextFormField(
-              style: TextStyle(
-                  height: 1.5,
-                  color: Colors.white,
-                  fontStyle: FontStyle.italic,
-                  letterSpacing: 1),
-              decoration: InputDecoration(
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                fillColor: Colors.white,
-                labelText: 'password',
-                labelStyle: TextStyle(
-                    color: Colors.deepOrange,
-                    letterSpacing: 1,
-                    fontStyle: FontStyle.italic,
-                    fontWeight: FontWeight.bold),
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'required';
-                } else {
-                  _saveUserData.password = value;
-                }
-              },
-            ),
-            TextFormField(
-              style: TextStyle(
-                  height: 1.5,
-                  color: Colors.white,
-                  fontStyle: FontStyle.italic,
-                  letterSpacing: 1),
-              decoration: InputDecoration(
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                fillColor: Colors.white,
-                labelText: 'email',
-                labelStyle: TextStyle(
-                    color: Colors.deepOrange,
-                    letterSpacing: 1,
-                    fontStyle: FontStyle.italic,
-                    fontWeight: FontWeight.bold),
-              ),
-              validator: (value) {
-                _saveUserData.email = value == null ? ' ' : value;
-              },
-            ),
+            CustomTextFormField(context, _saveUserData, "title", false),
+            CustomTextFormField(context, _saveUserData, 'username', false),
+            CustomTextFormField(context, _saveUserData, 'password', true),
+            CustomTextFormField(context, _saveUserData, 'email', false),
             Row(
               children: <Widget>[
                 Spacer(),
