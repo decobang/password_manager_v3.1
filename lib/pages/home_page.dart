@@ -17,7 +17,13 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blueGrey[700],
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Home Page'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              //Navigator.pushReplacementNamed(context, '/');
+            },
+          ),
+          title: Text('Login'),
         ),
         body: ValueListenableBuilder<Box<SaveUserData>>(
           valueListenable: Boxes.getUserData().listenable(),
