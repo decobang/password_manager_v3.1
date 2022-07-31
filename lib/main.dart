@@ -5,6 +5,9 @@ import 'package:password_manager_v3/pages/home_page.dart';
 import 'package:password_manager_v3/models/database_manager.dart';
 
 void main() async {
+  // ensure widgets binding
+  WidgetsFlutterBinding.ensureInitialized();
+  
   // initialize hive database
   await Hive.initFlutter();
 
