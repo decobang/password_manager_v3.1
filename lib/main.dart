@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:password_manager_v3/pages/add_info_page.dart';
 import 'package:password_manager_v3/pages/home_page.dart';
 import 'package:password_manager_v3/models/database_manager.dart';
+import 'package:password_manager_v3/pages/login_page.dart';
 
 void main() async {
   // ensure widgets binding
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
+        //'/': (context) => LoginPage(),
         '/': (context) => HomePage(),
         '/add_info_page': (context) => AddInfoPage(),
       },

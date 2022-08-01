@@ -16,11 +16,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey[700],
+          backgroundColor: Colors.lightBlue,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              //Navigator.pushReplacementNamed(context, '/');
+              Navigator.pushReplacementNamed(context, '/');
             },
           ),
           title: Text('Login'),
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.blueGrey[700],
+          backgroundColor: Colors.lightBlue,
           onPressed: () {
             Navigator.pushReplacementNamed(context, '/add_info_page');
           },
